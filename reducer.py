@@ -4,6 +4,7 @@ import sys
 
 # The input will be in the form of key-value pairs
 # It is sorted according to the key
+
 # Each key value pair will be in a new line
 # The key and the value are seperated by a tab (\t)
 # The key is the payment type and the value is the sales
@@ -20,8 +21,8 @@ import sys
 # Cash  455.51
 
 # Sum of all sales (values) is initialized with zero, we just started
-sum_of_values = 0
-
+sum_of_sales = 0
+count_of_items = 0
 # Previous key is initialized with None, we just started
 previous_key = None
 
@@ -46,8 +47,11 @@ for line in sys.stdin:
         # Key and value are seperated by a tab (\t)
         # Line ends with new line (\n)
         # Only output if count is greater than 114
-    if sum_of_values > 114:
-        sys.stdout.write("{0}\t{1}\n".format(previous_key, sum_of_values))
+    if count_of_items > 0:  # Avoid division by zero
+        average = sum_of_sales / count_of_items
+        sys.stdout.write("{0}\t{1:.2f}\n".format(previous_key, average))
+    sum_of_sales = 0
+    count_of_items = 0
         # Sum of sales starts again with 0
         sum_of_values = 0
 
@@ -55,10 +59,12 @@ for line in sys.stdin:
     # a += b is the same as a = a + b
     # the float function transforms the value
     # to a float data type (like decimal)
-    sum_of_values += 1
+    sum_of_sales += float(value)
+    count_of_items += 1
     # the previous key for the next iteration is the current key of the this iteration 
     previous_key = key
 
 # write the last result to stdout
-    if sum_of_values > 114:
-        sys.stdout.write("{0}\t{1}\n".format(previous_key, sum_of_values))
+    if count_of_items > 0:
+        average = sum_of_sales / count_of_items
+        sys.stdout.write("{0}\t{1:.2f}\n".format(previous_key, average))
