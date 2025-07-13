@@ -1,0 +1,24 @@
+Original Job: Sum by Payment Type
+SQL: SELECT payment, SUM(sales) FROM purchases GROUP BY payment;
+
+Exercise 1: Sum by Category
+SQL: SELECT category, SUM(sales) FROM purchases GROUP BY category;
+
+Exercise 2: Count by Category
+SQL: SELECT category, COUNT(*) FROM purchases GROUP BY category;
+
+Exercise 3: Data Validation (6 fields)
+SQL: No direct SQL equivalent - this is data validation during ETL process
+
+Exercise 4: Filter Specific Categories
+SQL: SELECT category, SUM(sales) FROM purchases 
+     WHERE category IN ('Computers', 'Cameras', 'Video Games') 
+     GROUP BY category;
+
+Exercise 5: Categories with > 114 purchases
+SQL: SELECT category, COUNT(*) FROM purchases 
+     GROUP BY category 
+     HAVING COUNT(*) > 114;
+
+Exercise 6: Average Sales by Category
+SQL: SELECT category, AVG(sales) FROM purchases GROUP BY category;
